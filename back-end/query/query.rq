@@ -1,0 +1,43 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ca: <http://www.semanticweb.org/crimeAlertSystem#>
+PREFIX math: <http://www.w3.org/2005/xpath-functions/math#>
+
+SELECT ?friendName ?crimeName ?friendLocName ?crimeLocName ?priority
+WHERE {
+    ?friend rdf:type ca:Friend;
+            ca:hasName ?friendName;
+            ca:hasLocation ?loc1 .
+    BIND(CONCAT("http://18.144.65.192:3030/ds/data#", str(?loc1)) as ?newLoc1)
+    
+    ?friendLoc rdf:type ca:Location;
+          ca:hasLocationName ?friendLocName;
+          ca:hasLatitude ?friendLat;
+          ca:hasLongitude ?friendLong .
+
+    FILTER(REGEX(STR(?friendLoc), STR(?newLoc1), "i"))
+
+    ?crime rdf:type ca:Crime;
+            ca:hasAlertName ?crimeName;
+            ca:hasPriority ?priority;
+            ca:hasCrimeLocation ?loc2 .
+
+    BIND(CONCAT("http://18.144.65.192:3030/ds/data#", str(?loc2)) as ?newLoc2)
+    
+    ?crimeLoc rdf:type ca:Location;
+          ca:hasLocationName ?crimeLocName;
+          ca:hasLatitude ?crimeLat;
+          ca:hasLongitude ?crimeLong .
+
+    FILTER(REGEX(STR(?crimeLoc), STR(?newLoc2), "i"))
+
+    FILTER (
+        6371 * math:acos(
+                math:sin(?friendLat * math:pi() / 180) * math:sin(?crimeLat * math:pi() / 180)
+                + math:cos(?friendLat * math:pi() / 180) * math:cos(?crimeLat * math:pi() / 180) * math:cos((?crimeLong * math:pi() / 180) - (?friendLong * math:pi() / 180))
+        )  < 3200
+    )
+
+    FILTER(STR(?priority)  < "3")  
+    
+}

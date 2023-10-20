@@ -1,0 +1,8 @@
+flask
+werkzeug
+requests
+pandas
+numpy
+locationsharinglib
+smtplib
+csv

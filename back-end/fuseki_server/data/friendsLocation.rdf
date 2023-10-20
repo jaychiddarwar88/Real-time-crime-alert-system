@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+	<!ENTITY ca "http://www.semanticweb.org/crimeAlertSystem#" >
+]>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+	xmlns:ca="http://www.semanticweb.org/crimeAlertSystem#">
+
+	<rdf:Description rdf:id="&ca;Friend1">
+	    <rdf:type rdf:resource="&ca;Friend"/>
+		<ca:hasName rdf:datatype="&rdfs;Literal">Sanjay Takkar</ca:hasName>
+		<ca:hasLocation rdf:resource="&ca;Location1001" />
+	</rdf:Description>
+
+	<rdf:Description rdf:id="&ca;Location1001">
+	    <rdf:type rdf:resource="&ca;Location"/>
+		<ca:hasLatitude rdf:datatype="&rdfs;Literal">28.4101107</ca:hasLatitude>
+		<ca:hasLongitude rdf:datatype="&rdfs;Literal">77.3465799</ca:hasLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:id="&ca;Friend2">
+	    <rdf:type rdf:resource="&ca;Friend"/>
+		<ca:hasName rdf:datatype="&rdfs;Literal">Sudha Takkar</ca:hasName>
+		<ca:hasLocation rdf:resource="&ca;Location1002" />
+	</rdf:Description>
+
+	<rdf:Description rdf:id="&ca;Location1002">
+	    <rdf:type rdf:resource="&ca;Location"/>
+		<ca:hasLatitude rdf:datatype="&rdfs;Literal">28.4100955</ca:hasLatitude>
+		<ca:hasLongitude rdf:datatype="&rdfs;Literal">77.3465577</ca:hasLongitude>
+	</rdf:Description>
+
+	<rdf:Description rdf:id="&ca;Friend3">
+	    <rdf:type rdf:resource="&ca;Friend"/>
+		<ca:hasName rdf:datatype="&rdfs;Literal">Aarushi Dhingra</ca:hasName>
+		<ca:hasLocation rdf:resource="&ca;Location1003" />
+	</rdf:Description>
+
+	<rdf:Description rdf:id="&ca;Location1003">
+	    <rdf:type rdf:resource="&ca;Location"/>
+		<ca:hasLatitude rdf:datatype="&rdfs;Literal">33.4214556</ca:hasLatitude>
+		<ca:hasLongitude rdf:datatype="&rdfs;Literal">-111.9211101</ca:hasLongitude>
+	</rdf:Description>
+
+</rdf:RDF>
